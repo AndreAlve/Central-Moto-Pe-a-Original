@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviço — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="servico.css">
+</head>
+
+<body>
+
+
+    <!-- TELA 1: FORMULÁRIO DO CLIENTE -->
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="index.html">Voltar</a>
+        <h2>🔧Solicitação de Serviço</h2>
+        <p>Preencha os dados abaixo e aguarde o orçamento!</p>
+    </div>
+
+    <div class="sol-wrap">
+        <div class="sol-card">
+
+            <!-- STEP INDICATOR -->
+            <div class="steps">
+                <div class="step ativo" id="dot1">1</div>
+                <div class="step-linha" id="lin1"></div>
+                <div class="step" id="dot2">2</div>
+                <div class="step-linha" id="lin2"></div>
+                <div class="step" id="dot3">✓</div>
+            </div>
+
+            <!-- PASSO 1: DADOS PESSOAIS -->
+            <div class="passo ativo" id="passo1">
+                <div class="passo-titulo">👤 Seus dados</div>
+
+                <label>Seu nome *</label>
+                <input id="inputNome" type="text" placeholder="Ex: João Silva" autocomplete="name">
+
+                <label>Seu WhatsApp *</label>
+                <input id="inputTelefone" type="tel" placeholder="Ex: (94) 99999-0000" autocomplete="tel">
+
+                <button class="btn-proximo" onclick="irPasso2()">
+                    Próximo
+                </button>
+            </div>
+
+            <!-- PASSO 2: MOTO + SERVIÇO -->
+            <div class="passo" id="passo2">
+                <div class="passo-titulo">🏍️ Sua moto e serviço</div>
+
+                <label>Marca da moto *</label>
+                <select id="inputMarca" onchange="atualizarModelos()">
+                    <option value="">Selecione...</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Yamaha">Yamaha</option>
+                    <option value="Suzuki">Suzuki</option>
+                    <option value="Kawasaki">Kawasaki</option>
+                    <option value="Dafra">Dafra</option>
+                    <option value="Shineray">Shineray</option>
+                    <option value="Haojue">Haojue</option>
+                    <option value="Outra">Outra</option>
+                </select>
+
+                <label>Modelo *</label>
+                <div class="input-sugestao-wrap">
+                    <input id="inputModelo" type="text" placeholder="Ex: CG 160, Fazer 250..."
+                        oninput="mostrarSugestoes()" onblur="esconderSugestoes()" autocomplete="off">
+                    <div class="sugestoes-lista" id="sugestoesLista" style="display:none"></div>
+                </div>
+
+                <label>Serviço desejado *</label>
+                <div class="servicos-grid" id="servicosGrid">
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Troca de óleo')">🛢️ Troca de óleo
+                    </div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Revisão completa')">🔧 Revisão</div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Troca de pneus')">🛞 Pneus</div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Troca de corrente')">⛓️ Corrente
+                    </div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Regulagem de freios')">🛑 Freios
+                    </div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Troca de pastilhas')">🔩 Pastilhas
+                    </div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Troca de vela')">⚡ Vela</div>
+                    <div class="servico-btn" onclick="selecionarServico(this, 'Diagnóstico geral')">🔍 Diagnóstico
+                    </div>
+                    <div class="servico-btn servico-outro" onclick="selecionarServico(this, 'Outro')">➕ Outro</div>
+                </div>
+                <input id="inputServicoCustom" type="text" placeholder="Descreva o serviço..."
+                    style="display:none;margin-top:10px">
+
+                <label style="margin-top:16px">Descreva o problema (opcional)</label>
+                <textarea id="inputProblema" placeholder="Ex: a moto está fazendo barulho, perdendo óleo..."></textarea>
+
+                <div class="nav-btns">
+                    <button class="btn-voltar" onclick="irPasso(1)">Voltar</button>
+                    <button class="btn-proximo" onclick="enviarSolicitacao()">
+                        ✅ Enviar Solicitação
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASSO 3: CONFIRMAÇÃO -->
+            <div class="passo" id="passo3">
+                <div class="confirmacao-box">
+                    <div class="conf-check">🎉</div>
+                    <div class="conf-titulo">Solicitação enviada!</div>
+                    <p class="conf-sub">
+                        A Central Moto Peças vai analisar e te enviar o orçamento pelo WhatsApp em breve!
+                    </p>
+                    <div class="conf-resumo" id="confResumo"></div>
+                    <div class="conf-aviso">
+                        ⏱️ Resposta em até <strong>2 horas</strong> no horário comercial
+                    </div>
+                    <button class="btn-nova" onclick="novaSolicitacao()">
+                        + Nova Solicitação
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="servico.js"></script>
+
+</body>
+
+</html>

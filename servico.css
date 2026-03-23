@@ -1,0 +1,696 @@
+/* ═══════════════════════════════════════════════════════
+   SOLICITAR SERVIÇO — solicitar-servico.css
+════════════════════════════════════════════════════════ */
+
+/* ── CABEÇALHO CLIENTE ── */
+.sol-cabecalho {
+    text-align: center;
+    padding: 100px 20px 10px;
+    animation: descerSuave 0.5s ease;
+}
+
+.sol-cabecalho h2 {
+    color: #e82d2d;
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.sol-cabecalho p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ── WRAP E CARD ── */
+.sol-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 16px 16px 80px;
+}
+
+.sol-card {
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid #222;
+    border-radius: 20px;
+    padding: 28px 22px;
+    animation: descerSuave 0.4s ease;
+}
+
+/* ── STEPS ── */
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 28px;
+}
+
+.step {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    color: #444;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.step.ativo {
+    background: #e82d2d;
+    border-color: #e82d2d;
+    color: white;
+}
+
+.step.feito {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: white;
+}
+
+.step-linha {
+    flex: 1;
+    height: 2px;
+    background: #222;
+    max-width: 80px;
+    transition: background 0.3s;
+}
+
+.step-linha.feita {
+    background: #22c55e;
+}
+
+/* ── PASSOS ── */
+.passo {
+    display: none;
+    animation: descerSuave 0.35s ease;
+}
+
+.passo.ativo {
+    display: block;
+}
+
+.passo-titulo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f5c400;
+    margin-bottom: 20px;
+}
+
+/* ── GRID DE SERVIÇOS ── */
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.servico-btn {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1.4;
+}
+
+.servico-btn:hover {
+    border-color: #555;
+    color: #ccc;
+}
+
+.servico-btn.selecionado {
+    background: rgba(232, 45, 45, 0.15);
+    border-color: #e82d2d;
+    color: white;
+    font-weight: bold;
+}
+
+.servico-outro {
+    grid-column: 1 / -1;
+}
+
+/* ── SUGESTÕES DE MODELO ── */
+.input-sugestao-wrap {
+    position: relative;
+}
+
+.sugestoes-lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(18, 18, 18, 0.99);
+    border: 1px solid #333;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.sugestao-item {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #aaa;
+    cursor: pointer;
+    border-bottom: 1px solid #1a1a1a;
+    transition: background 0.15s, color 0.15s;
+}
+
+.sugestao-item:hover {
+    background: rgba(245, 196, 0, 0.08);
+    color: #f5c400;
+}
+
+.sugestao-item:last-child {
+    border-bottom: none;
+}
+
+/* ── BOTÕES ── */
+.nav-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn-proximo {
+    flex: 1;
+    padding: 14px;
+    background: #e82d2d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-proximo:hover {
+    opacity: 0.88;
+    transform: scale(1.02);
+}
+
+.btn-voltar {
+    padding: 14px 18px;
+    background: transparent;
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-voltar:hover {
+    border-color: #555;
+    color: #aaa;
+}
+
+/* ── CONFIRMAÇÃO ── */
+.confirmacao-box {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.conf-check {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.conf-titulo {
+    color: #4ade80;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.conf-sub {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.conf-resumo {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.conf-resumo p {
+    text-align: left;
+    color: #ccc;
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.conf-aviso {
+    background: rgba(245, 196, 0, 0.08);
+    border: 1px solid rgba(245, 196, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.conf-aviso strong {
+    color: #f5c400;
+}
+
+.btn-nova {
+    width: 100%;
+    padding: 13px;
+    background: transparent;
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-nova:hover {
+    border-color: #555;
+    color: #aaa;
+}
+
+/* ══════════════════════════════════════════════════════
+   PÁGINA DO ALISSON — VER SOLICITAÇÕES
+══════════════════════════════════════════════════════ */
+
+.adm-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+}
+
+/* ── FILTROS ── */
+.filtros-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 9px 18px;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.filtro-btn:hover {
+    border-color: #f5c400;
+    color: #f5c400;
+}
+
+.filtro-btn.ativo {
+    background: #f5c400;
+    border-color: #f5c400;
+    color: black;
+}
+
+/* ── CARD DE SOLICITAÇÃO ── */
+.solic-card {
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 12px;
+    animation: descerSuave 0.3s ease;
+    transition: border-color 0.2s;
+}
+
+.solic-card:hover {
+    border-color: #2a2a2a;
+}
+
+.solic-card.aguardando {
+    border-left: 3px solid #f5c400;
+}
+
+.solic-card.respondido {
+    border-left: 3px solid #4ade80;
+}
+
+.solic-topo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.solic-nome {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.solic-hora {
+    color: #444;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.solic-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.status-aguardando {
+    background: rgba(245, 196, 0, 0.15);
+    color: #f5c400;
+}
+
+.status-respondido {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+.solic-dados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.solic-dado {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.solic-dado-label {
+    color: #444;
+    font-size: 11px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.solic-dado-valor {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.solic-problema {
+    background: rgba(245, 196, 0, 0.05);
+    border: 1px solid rgba(245, 196, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* Orçamento já respondido */
+.orc-respondido {
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.orc-valor {
+    color: #4ade80;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.orc-obs {
+    color: #666;
+    font-size: 13px;
+}
+
+.solic-acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-responder {
+    flex: 1;
+    padding: 11px;
+    background: #e82d2d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-responder:hover {
+    opacity: 0.85;
+}
+
+.btn-wpp-resp {
+    flex: 1;
+    display: block;
+    background: rgba(37, 211, 102, 0.1);
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    color: #4ade80;
+    padding: 11px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-wpp-resp:hover {
+    background: rgba(37, 211, 102, 0.2);
+}
+
+.btn-editar-orc {
+    padding: 11px 18px;
+    background: transparent;
+    border: 1px solid rgba(245, 196, 0, 0.3);
+    color: #f5c400;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-editar-orc:hover {
+    background: rgba(245, 196, 0, 0.08);
+}
+
+/* ── MODAL ORÇAMENTO ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 300;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-orc-box {
+    background: #0e0e0e;
+    border: 1px solid #222;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    max-width: 540px;
+    animation: subirModal 0.3s ease;
+}
+
+@keyframes subirModal {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modal-orc-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.modal-orc-topo h3 {
+    color: #f5c400;
+    font-size: 17px;
+}
+
+.btn-fechar-modal {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.btn-fechar-modal:hover {
+    color: #f87171;
+    border-color: rgba(232, 45, 45, 0.3);
+}
+
+.modal-orc-corpo {
+    padding: 20px;
+}
+
+.modal-resumo-cli {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+.modal-resumo-cli p {
+    text-align: left;
+    color: #888;
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.modal-resumo-cli strong {
+    color: white;
+}
+
+.valor-wrap {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.valor-prefix {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4ade80;
+    font-size: 20px;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+.valor-wrap input {
+    padding-left: 42px !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #4ade80 !important;
+}
+
+.orc-aviso {
+    background: rgba(245, 196, 0, 0.06);
+    border: 1px solid rgba(245, 196, 0, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.orc-aviso strong {
+    color: #f5c400;
+}
+
+.btn-enviar-orc {
+    width: 100%;
+    padding: 15px;
+    background: #e82d2d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-bottom: 10px;
+}
+
+.btn-enviar-orc:hover {
+    opacity: 0.85;
+}
+
+.btn-cancel-orc {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #333;
+    color: #444;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+}
+
+.btn-cancel-orc:hover {
+    color: #888;
+    border-color: #444;
+}
+
+/* ── EMPTY ── */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #333;
+    font-size: 15px;
+}
+
+.empty-state span {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 12px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 480px) {
+    .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .solic-dados {
+        grid-template-columns: 1fr;
+    }
+}

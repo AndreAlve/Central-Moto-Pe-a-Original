@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Central Moto Peças</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <!-- LADO ESQUERDO — decorativo -->
+        <div class="login-esq">
+            <div class="login-esq-conteudo">
+                <img src="Logo.png" alt="Central Moto Peças" class="login-logo-big">
+                <h1 class="login-slogan">Sistema de<br>Gestão Completo</h1>
+                <p class="login-sub">Gerencie serviços, clientes,<br>produtos e financeiro em um só lugar.</p>
+                <div class="login-features">
+                    <div class="feat-item">🔧 Registrar serviços</div>
+                    <div class="feat-item">👥 Gerenciar clientes</div>
+                    <div class="feat-item">📦 Controle de estoque</div>
+                    <div class="feat-item">💰 Financeiro completo</div>
+                </div>
+
+                <!-- RODAPÉ -->
+                <footer class="final-rodape">
+                    <img src="Sigma Orbitek.png" alt="Central Moto Peças" class="rodape-logo">
+                    <p>© Desenvolvido por Sigma Orbitek — André Alves 2026</p>
+                </footer>
+
+            </div>
+        </div>
+
+        <!-- LADO DIREITO — formulário -->
+        <div class="login-dir">
+            <div class="login-card" id="loginCard">
+
+                <div class="login-header">
+                    <img src="Logo.png" alt="Logo" class="login-logo-small">
+                    <h2>Bem-vindo de volta!</h2>
+                    <p>Entre com suas credenciais para acessar o painel</p>
+                </div>
+
+                <div class="login-form">
+
+                    <label>Usuário</label>
+                    <div class="input-icon-wrap">
+                        <span class="input-icon">👤</span>
+                        <input id="inputUsuario" type="text" placeholder="Digite seu usuário" autocomplete="username">
+                    </div>
+
+                    <label>Senha</label>
+                    <div class="input-icon-wrap">
+                        <span class="input-icon">🔒</span>
+                        <input id="inputSenha" type="password" placeholder="Digite sua senha"
+                            autocomplete="current-password">
+                        <button class="btn-ver-senha" onclick="verSenha()" type="button" tabindex="-1">
+                            👁️
+                        </button>
+                    </div>
+
+                    <div class="erro-login" id="erroLogin"></div>
+
+                    <button class="btn-entrar" onclick="fazerLogin()" id="btnEntrar">
+                        Entrar na Administração
+                    </button>
+
+                    <div class="login-hint">
+                        <a class="hbtn-amarelo" href="index.html" class="link-voltar">
+                            Voltar para o site
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="login.js"></script>
+
+</body>
+
+</html>

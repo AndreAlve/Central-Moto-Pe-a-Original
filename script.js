@@ -576,3 +576,27 @@ carregarClientes()
 carregarProdutos()
 carregarFinanceiro()
 carregarFuncionarios()
+
+
+//---fire base---//
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCVlQSFz-QOiyji1aJbQLeCBW1ezGKnyKI",
+  authDomain: "central-moto-pecas.firebaseapp.com",
+  projectId: "central-moto-pecas",
+  storageBucket: "central-moto-pecas.firebasestorage.app",
+  messagingSenderId: "639017413571",
+  appId: "1:639017413571:web:08bf971ea7113c1d796b76",
+  measurementId: "G-0SZ8FJXK33"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

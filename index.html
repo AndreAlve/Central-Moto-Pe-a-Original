@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--Menu-->
+    <nav class="menu">
+        <div class="menu_logo">
+            <a href="Login.html">
+                <img src="Logo.png" alt="Central Moto Peças">
+            </a>
+        </div>
+        </div>
+        <div class="menu_links">
+            <a href="#inicio">Início</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+        </div>
+        <div class="menu-hamburger" onclick="abrirMenu()"></div>
+    </nav>
+
+    <!--menu para celular-->
+    <div id="menu-celular" class="menu-celular">
+        <a href="#inicio" onclick="fecharMenu()">Início</a>
+        <a href="#catalogo" onclick="fecharMenu()">Catálogo</a>
+        <a href="#servicos" onclick="fecharMenu()">Serviços</a>
+        <a href="#contato" onclick="fecharMenu()">Contato</a>
+    </div>
+
+    <!--cabeçalho-->
+    <section class="cabeçalho" id="inicio">
+        <div class="cabeçalho-conteudo">
+            <img class="cabeçalho-logo" src="Logo.png" alt="Central Moto Peças">
+            <p class="cabeçalho-desc">
+                Sua loja e oficina completa de moto peças.<br>
+                Peças originais, paralelas e usadas. Serviços de qualidade!
+            </p>
+            <div class="cabeçalho-botoes">
+                <a class="hbtn-vermelho" href="servicos.html"><img src="suporte-tecnico.png" alt="Agendar">Agendar e
+                    Solicitar o Serviço</a>
+                <a class="hbtn-amarelo" href="historico.html"><img src="historia.png" alt="Histórico"> Histórico
+                    da sua moto</a>
+                <a class="hbtn-whats" href="https://wa.me/558196498803" target="_blank" rel="noopener">📲 WhatsApp</a>
+            </div>
+        </div>
+        <div class="cabeçalho-bg"></div>
+    </section>
+
+    <!-- ══ NÚMEROS ══ -->
+    <section class="numeros">
+        <div class="numeros-grid">
+            <div class="numero-item">
+                <div class="numero-val" data-alvo="10">5</div>
+                <div class="numero-label">Anos de experiência</div>
+            </div>
+            <div class="numero-item">
+                <div class="numero-val" data-alvo="500">500</div>
+                <div class="numero-label">Peças disponíveis</div>
+            </div>
+            <div class="numero-item">
+                <div class="numero-val" data-alvo="1200">1200</div>
+                <div class="numero-label">Clientes atendidos</div>
+            </div>
+            <div class="numero-item">
+                <div class="numero-val" data-alvo="8">8</div>
+                <div class="numero-label">Marcas atendidas</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section class="secao" id="servicos">
+        <div class="secao-topo">
+            <div class="secao-tag">O que fazemos</div>
+            <h2 class="secao-titulo">Nossos <span>Serviços</span></h2>
+            <p class="secao-sub">Tudo que sua moto precisa em um só lugar</p>
+        </div>
+        <!--SERVIÇOS-->
+        <div class="servicos-grid">
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="/image/lubrificante.png" alt="Troca de Óleo">
+                <h3>Troca de Óleo</h3>
+                <p>Óleo mineral e sintético para todos os modelos</p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="revisao.png" alt="Revisão Completa">
+                <h3>Revisão Completa</h3>
+                <p>Revisão geral com checklist completo da sua moto</p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="pneu.png" alt="Troca de Pneus">
+                <h3>Troca de Pneus</h3>
+                <p>Pneus das melhores marcas com montagem inclusa</p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="corrente.png" alt="Troca de Corrente">
+                <h3>Troca de Corrente</h3>
+                <p>Kits de relação originais e paralelos</p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="freio-de-disco.png" alt="Sistema de Freios">
+                <h3>Sistema de Freios</h3>
+                <p>Pastilhas, discos e regulagem do sistema completo</p>
+            </div>
+            <div class="servico-card">
+                <div class="servico-icone"></div>
+                <img src="diagnostico.png" alt="Diagnóstico">
+                <h3>Diagnóstico</h3>
+                <p>Identificamos qualquer problema na sua moto</p>
+            </div>
+        </div>
+        <div class="btn-ver-todos">
+            <a class="hbtn-amarelo" href="servicos.html">Ver Todos os Serviços</a>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DESTAQUE -->
+    <section class="secao secao-escura" id="catalogo">
+        <div class="secao-topo">
+            <div class="secao-tag">Estoque completo</div>
+            <h2 class="secao-titulo">Catálogo de <span>Peças</span></h2>
+            <p class="secao-sub">Peças para Honda, Yamaha, Suzuki, Shineray e muito mais</p>
+        </div>
+        <div class="marcas-grid">
+            <div class="marca-item">Honda <img src="Honda.png" alt="Honda"></div>
+            <div class="marca-item">Yamaha <img src="Yamaha.png" alt="Yamaha"></div>
+            <div class="marca-item">Suzuki <img src="Suzuki.png" alt="Suzuki"></div>
+            <div class="marca-item">Kawasaki <img src="Kawasaki.png" alt="Kawasaki"></div>
+            <div class="marca-item">Shineray <img src="Shineray.png" alt="Shineray"></div>
+            <div class="marca-item">E muito mais <img src="Marcas.png" alt="Outras"></div>
+        </div>
+        <div class="catalogo-centro">
+            <a class="hbtn-vermelho" href="catalogo.html">Ver Catálogo Completo</a>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="secao" id="diferenciais">
+        <div class="secao-topo">
+            <div class="secao-tag">Nossos diferenciais</div>
+            <h2 class="secao-titulo">Por que escolher a <span>Central?</span></h2>
+        </div>
+        <div class="diferenciais-grid">
+            <div class="diferencial">
+                <div class="dif-icone">⚡</div>
+                <h3>Atendimento Rápido</h3>
+                <p>Seu serviço feito no prazo combinado, sem enrolação</p>
+            </div>
+            <div class="diferencial">
+                <div class="dif-icone">💰</div>
+                <h3>Melhor Preço</h3>
+                <p>Preços justos e competitivos com qualidade garantida</p>
+            </div>
+            <div class="diferencial">
+                <div class="dif-icone">🔩</div>
+                <h3>Peças de Qualidade</h3>
+                <p>Originais, paralelas e usadas — todas com garantia</p>
+            </div>
+            <div class="diferencial">
+                <div class="dif-icone">📲</div>
+                <h3>Orçamento e Agendamento Digital</h3>
+                <p>Peça seu orçamento e agende seu serviço pelo site</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-conteudo">
+            <h2>Precisa de um serviço?</h2>
+            <p>Agende agora ou solicite um orçamento sem compromisso!</p>
+            <div class="cta-botoes">
+                <a class="hbtn-amarelo" href="servicos.html">💬 faça seu Pedido de Orçamento e agendamento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="secao secao-escura" id="contato">
+        <div class="secao-topo">
+            <div class="secao-tag">Fale conosco</div>
+            <h2 class="secao-titulo">Entre em <span>Contato</span></h2>
+        </div>
+        <div class="contato-grid">
+            <a class="contato-card" href="https://wa.me/558196498803" target="_blank" rel="noopener">
+                <div class="contato-icone">📲</div>
+                <div class="contato-info">
+                    <div class="contato-label">WhatsApp</div>
+                    <div class="contato-val">(81) 9649-8803</div>
+                </div>
+            </a>
+            <div class="contato-card">
+                <div class="contato-icone">📍</div>
+                <div class="contato-info">
+                    <div class="contato-label">Endereço</div>
+                    <div class="contato-val">Altinho — PE</div>
+                </div>
+            </div>
+            <div class="contato-card">
+                <div class="contato-icone">🕐</div>
+                <div class="contato-info">
+                    <div class="contato-label">Horário</div>
+                    <div class="contato-val">Seg–Sex: 8h às 18h Sab: 12h</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="final-rodape">
+        <img src="sigma.png" alt="Central Moto Peças" class="rodape-logo">
+        <p>© 2026 Desenvolvido por Sigma Orbitek — André Alves</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

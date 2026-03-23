@@ -106,5 +106,5 @@ function buscarPeca() {
 // ── PEDIR ORÇAMENTO ───────────────────────────────────
 function pedirPeca(nome, preco) {
     localStorage.setItem("pecaSelecionada", JSON.stringify({ nome: nome, preco: preco }))
-    window.location.href = "/servicos.html"
+    window.location.href = "servicos.html"
 }

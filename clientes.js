@@ -6,10 +6,6 @@ let filtroSolicAtual = "todos"
 
 // ── INIT ─────────────────────────────────────────────
 window.addEventListener("load", function () {
-  carregarResumo()
-  renderSolicitacoes()
-  renderClientes()
-
   // Fecha modal clicando fora
   document.getElementById("modalSolic").addEventListener("click", function (e) {
     if (e.target === this) fecharModalSolic()
@@ -17,6 +13,21 @@ window.addEventListener("load", function () {
   document.getElementById("modalCliente").addEventListener("click", function (e) {
     if (e.target === this) fecharModalCliente()
   })
+
+  // Ouve o Firebase em tempo real — atualiza automaticamente quando chegar pedido novo
+  if (typeof fbOuvir !== "undefined") {
+    fbOuvir("solicitacoes", function (lista) {
+      // Sincroniza com localStorage para o resto do sistema funcionar
+      localStorage.setItem("solicitacoesServico", JSON.stringify(lista))
+      carregarResumo()
+      renderSolicitacoes()
+      renderClientes()
+    })
+  } else {
+    carregarResumo()
+    renderSolicitacoes()
+    renderClientes()
+  }
 })
 
 // ── HELPERS ──────────────────────────────────────────
@@ -26,6 +37,16 @@ function getSolicitacoes() {
 
 function setSolicitacoes(lista) {
   localStorage.setItem("solicitacoesServico", JSON.stringify(lista))
+  // Sincroniza cada item atualizado no Firebase
+  if (typeof db !== "undefined") {
+    lista.forEach(function (s) {
+      if (s._fbKey) {
+        let dados = Object.assign({}, s)
+        delete dados._fbKey
+        fbAtualizar("solicitacoes", s._fbKey, dados)
+      }
+    })
+  }
 }
 
 function getHistorico() {
@@ -41,18 +62,18 @@ function montarWpp(telefone, msg) {
 function toast(msg, cor) {
   let t = document.getElementById("toast")
   t.textContent = msg
-  t.className = "toast " + (cor || "") + " visivel"
+  t.className   = "toast " + (cor || "") + " visivel"
   setTimeout(function () { t.classList.remove("visivel") }, 2500)
 }
 
 // Texto e cor do badge por status
 function badgeInfo(status) {
   let map = {
-    aguardando: { txt: "⏳ Aguardando", cls: "badge-aguardando" },
-    agendado: { txt: "📅 Agendado", cls: "badge-agendado" },
-    em_andamento: { txt: "🔧 Em andamento", cls: "badge-em_andamento" },
-    pronto: { txt: "✅ Pronto", cls: "badge-pronto" },
-    concluido: { txt: "🏁 Concluído", cls: "badge-concluido" }
+    aguardando:   { txt: "⏳ Aguardando",    cls: "badge-aguardando"   },
+    agendado:     { txt: "📅 Agendado",       cls: "badge-agendado"     },
+    em_andamento: { txt: "🔧 Em andamento",   cls: "badge-em_andamento" },
+    pronto:       { txt: "✅ Pronto",          cls: "badge-pronto"       },
+    concluido:    { txt: "🏁 Concluído",       cls: "badge-concluido"    }
   }
   return map[status] || { txt: status, cls: "" }
 }
@@ -106,12 +127,12 @@ function renderSolicitacoes() {
 
   if (lista.length === 0) {
     let msgs = {
-      todos: "Nenhuma solicitação ainda.",
-      aguardando: "Nenhuma solicitação aguardando! 🎉",
-      agendado: "Nenhum agendamento confirmado.",
+      todos:        "Nenhuma solicitação ainda.",
+      aguardando:   "Nenhuma solicitação aguardando! 🎉",
+      agendado:     "Nenhum agendamento confirmado.",
       em_andamento: "Nenhum serviço em andamento.",
-      pronto: "Nenhum serviço pronto para buscar.",
-      concluido: "Nenhum serviço concluído ainda."
+      pronto:       "Nenhum serviço pronto para buscar.",
+      concluido:    "Nenhum serviço concluído ainda."
     }
     div.innerHTML = `
       <div class="empty-state">
@@ -128,7 +149,7 @@ function renderSolicitacoes() {
     if (s.data || s.horario) {
       agendHtml = `
         <div class="agendamento-box">
-          ${s.data ? `<div class="agend-item">📅 <span class="agend-val">${s.data}</span></div>` : ""}
+          ${s.data    ? `<div class="agend-item">📅 <span class="agend-val">${s.data}</span></div>`    : ""}
           ${s.horario ? `<div class="agend-item">🕐 <span class="agend-val">${s.horario}</span></div>` : ""}
         </div>`
     }
@@ -140,8 +161,8 @@ function renderSolicitacoes() {
         <div class="servicos-extras">
           <div class="servicos-extras-titulo">🔧 Serviços adicionados</div>
           ${s.servicosExtras.map(function (e) {
-        return `<span class="servico-extra-tag">${e}</span>`
-      }).join("")}
+            return `<span class="servico-extra-tag">${e}</span>`
+          }).join("")}
         </div>`
     }
 
@@ -249,7 +270,7 @@ function cancelarSolic(id) {
 // ── MODAL: AGENDAR DATA/HORA ──────────────────────────
 function abrirModalAgendar(id) {
   let lista = getSolicitacoes()
-  let s = lista.find(function (x) { return x.id === id })
+  let s     = lista.find(function (x) { return x.id === id })
   if (!s) return
 
   let hoje = new Date().toISOString().split("T")[0]
@@ -275,9 +296,9 @@ function abrirModalAgendar(id) {
           <label>Horário *</label>
           <select id="mdHorario">
             <option value="">Selecione...</option>
-            ${["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"].map(function (h) {
-    return `<option value="${h}" ${s.horario === h ? "selected" : ""}>${h}</option>`
-  }).join("")}
+            ${["08:00","09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00"].map(function (h) {
+              return `<option value="${h}" ${s.horario === h ? "selected" : ""}>${h}</option>`
+            }).join("")}
           </select>
         </div>
       </div>
@@ -299,11 +320,11 @@ function abrirModalAgendar(id) {
 }
 
 function salvarAgendamento(id) {
-  let data = document.getElementById("mdData").value
+  let data    = document.getElementById("mdData").value
   let horario = document.getElementById("mdHorario").value
-  let obs = document.getElementById("mdObs").value.trim()
+  let obs     = document.getElementById("mdObs").value.trim()
 
-  if (!data) { alert("Selecione a data!"); return }
+  if (!data)    { alert("Selecione a data!"); return }
   if (!horario) { alert("Selecione o horário!"); return }
 
   let dataFmt = data.split("-").reverse().join("/")
@@ -312,10 +333,10 @@ function salvarAgendamento(id) {
   let s
   lista.forEach(function (x) {
     if (x.id === id) {
-      x.status = "agendado"
-      x.data = dataFmt
-      x.horario = horario
-      x.obsAgendamento = obs
+      x.status        = "agendado"
+      x.data          = dataFmt
+      x.horario       = horario
+      x.obsAgendamento= obs
       s = x
     }
   })
@@ -342,7 +363,7 @@ function salvarAgendamento(id) {
 // ── MODAL: ADICIONAR SERVIÇOS ─────────────────────────
 function abrirModalServicos(id) {
   let lista = getSolicitacoes()
-  let s = lista.find(function (x) { return x.id === id })
+  let s     = lista.find(function (x) { return x.id === id })
   if (!s) return
 
   let servicosDisponiveis = [
@@ -368,13 +389,13 @@ function abrirModalServicos(id) {
       <div class="modal-secao-titulo">🔧 Serviços adicionais encontrados na análise</div>
       <div class="servicos-check-grid" id="servicosCheckGrid">
         ${servicosDisponiveis.map(function (sv) {
-    let marcado = extras.includes(sv) ? "marcado" : ""
-    return `
+          let marcado = extras.includes(sv) ? "marcado" : ""
+          return `
             <div class="serv-check ${marcado}" onclick="toggleServico(this, '${sv}')">
               <input type="checkbox" ${marcado ? "checked" : ""}>
               ${sv}
             </div>`
-  }).join("")}
+        }).join("")}
       </div>
 
       <label>Outro serviço não listado</label>
@@ -417,7 +438,7 @@ function salvarServicos(id) {
   lista.forEach(function (x) {
     if (x.id === id) {
       x.servicosExtras = marcados
-      x.obsServicos = obs
+      x.obsServicos    = obs
       s = x
     }
   })
@@ -454,7 +475,7 @@ function marcarPronto(id) {
 
 function concluirServico(id) {
   let lista = getSolicitacoes()
-  let s = lista.find(function (x) { return x.id === id })
+  let s     = lista.find(function (x) { return x.id === id })
   if (!s) return
 
   // Abre modal para preencher valor antes de concluir
@@ -470,8 +491,8 @@ function concluirServico(id) {
         <p style="color:#555;font-size:13px;margin-top:4px">
           🏍️ ${s.moto || "—"} · 🔧 ${s.servico}
           ${s.servicosExtras && s.servicosExtras.length
-      ? " + " + s.servicosExtras.length + " extras"
-      : ""}
+            ? " + " + s.servicosExtras.length + " extras"
+            : ""}
         </p>
       </div>
 
@@ -508,46 +529,46 @@ function concluirServico(id) {
   document.getElementById("modalSolic").classList.add("aberto")
 
   // Carrega funcionários no select
-  let funcs = JSON.parse(localStorage.getItem("funcionarios")) || []
+  let funcs  = JSON.parse(localStorage.getItem("funcionarios")) || []
   let selFun = document.getElementById("concFuncionario")
   funcs.forEach(function (f) {
-    let opt = document.createElement("option")
+    let opt   = document.createElement("option")
     opt.value = f.nome
-    opt.text = f.nome + (f.funcao ? " — " + f.funcao : "")
+    opt.text  = f.nome + (f.funcao ? " — " + f.funcao : "")
     selFun.appendChild(opt)
   })
 }
 
 function salvarConclusao(id) {
-  let valor = parseFloat(document.getElementById("concValor").value) || 0
-  let pagamento = document.getElementById("concPagamento").value
-  let funcionario = document.getElementById("concFuncionario").value
-  let km = document.getElementById("concKm").value
+  let valor      = parseFloat(document.getElementById("concValor").value) || 0
+  let pagamento  = document.getElementById("concPagamento").value
+  let funcionario= document.getElementById("concFuncionario").value
+  let km         = document.getElementById("concKm").value
 
   if (!valor) { alert("Digite o valor cobrado!"); return }
 
   let lista = getSolicitacoes()
-  let s = lista.find(function (x) { return x.id === id })
+  let s     = lista.find(function (x) { return x.id === id })
   if (!s) return
 
   // Salva no histórico
   let hist = getHistorico()
   hist.push({
-    id: Date.now(),
-    nome: s.nome,
-    telefone: s.telefone,
-    moto: s.moto || "",
-    placa: s.placa || "",
-    km: km,
-    servico: s.servico,
+    id:             Date.now(),
+    nome:           s.nome,
+    telefone:       s.telefone,
+    moto:           s.moto || "",
+    placa:          s.placa || "",
+    km:             km,
+    servico:        s.servico,
     servicosExtras: s.servicosExtras || [],
-    obs: s.obsServicos || "",
-    valor: valor,
-    data: new Date().toLocaleDateString("pt-BR"),
-    pagamento: pagamento,
-    funcionario: funcionario,
-    foto: null,
-    origem: "solicitacao"
+    obs:            s.obsServicos || "",
+    valor:          valor,
+    data:           new Date().toLocaleDateString("pt-BR"),
+    pagamento:      pagamento,
+    funcionario:    funcionario,
+    foto:           null,
+    origem:         "solicitacao"
   })
   localStorage.setItem("historico", JSON.stringify(hist))
 
@@ -563,7 +584,7 @@ function salvarConclusao(id) {
 }
 
 // ── FECHAR MODAIS ─────────────────────────────────────
-function fecharModalSolic() { document.getElementById("modalSolic").classList.remove("aberto") }
+function fecharModalSolic()   { document.getElementById("modalSolic").classList.remove("aberto") }
 function fecharModalCliente() { document.getElementById("modalCliente").classList.remove("aberto") }
 
 // ── ADICIONAR CLIENTE MANUAL ──────────────────────────
@@ -618,32 +639,32 @@ function abrirModalAddCliente() {
 }
 
 function salvarNovoCliente() {
-  let nome = document.getElementById("addNome").value.trim()
+  let nome     = document.getElementById("addNome").value.trim()
   let telefone = document.getElementById("addTelefone").value.trim()
-  let marca = document.getElementById("addMarca").value
-  let modelo = document.getElementById("addModelo").value.trim()
-  let placa = document.getElementById("addPlaca").value.trim().toUpperCase()
+  let marca    = document.getElementById("addMarca").value
+  let modelo   = document.getElementById("addModelo").value.trim()
+  let placa    = document.getElementById("addPlaca").value.trim().toUpperCase()
 
-  if (!nome) { alert("Digite o nome!"); return }
+  if (!nome)     { alert("Digite o nome!"); return }
   if (!telefone) { alert("Digite o telefone!"); return }
 
   // Salva como um registro vazio no histórico
   // para que o cliente apareça na lista
   let hist = getHistorico()
   hist.push({
-    id: Date.now(),
-    nome: nome,
-    telefone: telefone,
-    moto: marca && modelo ? marca + " " + modelo : marca || modelo || "",
-    placa: placa,
-    km: "",
-    servico: "Cadastro manual",
-    obs: "Cliente adicionado manualmente",
-    valor: 0,
-    data: new Date().toLocaleDateString("pt-BR"),
-    pagamento: "",
+    id:          Date.now(),
+    nome:        nome,
+    telefone:    telefone,
+    moto:        marca && modelo ? marca + " " + modelo : marca || modelo || "",
+    placa:       placa,
+    km:          "",
+    servico:     "Cadastro manual",
+    obs:         "Cliente adicionado manualmente",
+    valor:       0,
+    data:        new Date().toLocaleDateString("pt-BR"),
+    pagamento:   "",
     funcionario: "",
-    foto: null,
+    foto:        null,
     cadastroManual: true
   })
   localStorage.setItem("historico", JSON.stringify(hist))
@@ -657,8 +678,8 @@ function salvarNovoCliente() {
 function renderClientes() {
   let busca = (document.getElementById("inputBuscaCli").value || "").toLowerCase()
 
-  let historico = getHistorico()
-  let orcamentos = JSON.parse(localStorage.getItem("orcamentos")) || []
+  let historico    = getHistorico()
+  let orcamentos   = JSON.parse(localStorage.getItem("orcamentos"))   || []
   let agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || []
   let solicitacoes = getSolicitacoes()
 
@@ -674,7 +695,7 @@ function renderClientes() {
       }
     }
     let c = mapa[tel]
-    if (item.moto && !c.motos.includes(item.moto)) c.motos.push(item.moto)
+    if (item.moto  && !c.motos.includes(item.moto))   c.motos.push(item.moto)
     if (item.placa && !c.placas.includes(item.placa)) c.placas.push(item.placa)
     if (tipo === "historico") {
       c.servicos.push(item)
@@ -685,20 +706,20 @@ function renderClientes() {
 
   historico.forEach(function (i) { adicionar(i, "historico") })
   orcamentos.filter(function (o) { return o.status === "Aguardando" })
-    .forEach(function (i) { adicionar(i, "pendente") })
+            .forEach(function (i) { adicionar(i, "pendente") })
   agendamentos.filter(function (a) { return a.status === "Aguardando" })
-    .forEach(function (i) { adicionar(i, "pendente") })
+              .forEach(function (i) { adicionar(i, "pendente") })
   solicitacoes.filter(function (s) { return s.status !== "concluido" })
-    .forEach(function (i) { adicionar(i, "pendente") })
+              .forEach(function (i) { adicionar(i, "pendente") })
 
   let clientes = Object.values(mapa)
 
   if (busca) {
     clientes = clientes.filter(function (c) {
       return c.nome.toLowerCase().includes(busca) ||
-        c.telefone.includes(busca) ||
-        c.motos.some(function (m) { return m.toLowerCase().includes(busca) }) ||
-        c.placas.some(function (p) { return p.toLowerCase().includes(busca) })
+             c.telefone.includes(busca) ||
+             c.motos.some(function (m) { return m.toLowerCase().includes(busca) }) ||
+             c.placas.some(function (p) { return p.toLowerCase().includes(busca) })
     })
   }
 
@@ -713,13 +734,13 @@ function renderClientes() {
 
   div.innerHTML = clientes.map(function (c) {
     let inicial = c.nome.trim()[0].toUpperCase()
-    let nServ = c.servicos.length
+    let nServ   = c.servicos.length
 
     let tags = ""
-    if (nServ >= 5) tags += `<span class="cli-tag tag-vip">⭐ VIP</span>`
-    else if (nServ >= 2) tags += `<span class="cli-tag tag-frequente">⭐ Frequente</span>`
+    if (nServ >= 5)       tags += `<span class="cli-tag tag-vip">⭐ VIP</span>`
+    else if (nServ >= 2)  tags += `<span class="cli-tag tag-frequente">⭐ Frequente</span>`
     else if (nServ === 0) tags += `<span class="cli-tag tag-novo">🆕 Novo</span>`
-    if (c.pendentes > 0) tags += `<span class="cli-tag tag-pendente">⏳ ${c.pendentes} pendente${c.pendentes > 1 ? "s" : ""}</span>`
+    if (c.pendentes > 0)  tags += `<span class="cli-tag tag-pendente">⏳ ${c.pendentes} pendente${c.pendentes > 1 ? "s" : ""}</span>`
 
     let json = encodeURIComponent(JSON.stringify(c))
 
@@ -748,12 +769,12 @@ function renderClientes() {
 function abrirModalCliente(json) {
   let c = JSON.parse(decodeURIComponent(json))
 
-  let wppGeral = montarWpp(c.telefone, "Olá " + c.nome + "! Aqui é a Central Moto Peças. Como posso te ajudar? 🏍️")
+  let wppGeral  = montarWpp(c.telefone, "Olá " + c.nome + "! Aqui é a Central Moto Peças. Como posso te ajudar? 🏍️")
   let wppPronto = montarWpp(c.telefone, "Olá " + c.nome + "! Sua moto *" + (c.motos[0] || "") + "* está pronta para buscar! 🏍️ _Central Moto Peças_")
 
   let histHtml = c.servicos.length > 0
     ? [...c.servicos].reverse().map(function (s) {
-      return `
+        return `
           <div class="hist-mini">
             <div class="hist-mini-topo">
               <div class="hist-mini-serv">🔧 ${s.servico}</div>
@@ -762,11 +783,11 @@ function abrirModalCliente(json) {
             <div class="hist-mini-meta">
               🏍️ ${s.moto || ""}
               ${s.funcionario ? " · 👨‍🔧 " + s.funcionario : ""}
-              ${s.pecas ? " · 🔩 " + s.pecas : ""}
+              ${s.pecas       ? " · 🔩 " + s.pecas         : ""}
             </div>
             <div class="hist-mini-val">💰 R$ ${(s.valor || 0).toFixed(2)}</div>
           </div>`
-    }).join("")
+      }).join("")
     : `<div style="color:#333;font-size:13px;padding:8px">Nenhum serviço registrado.</div>`
 
   let telEnc = encodeURIComponent(c.telefone)

@@ -8,7 +8,7 @@
 
 body {
     background-color: #111111;
-    background-image: url("/image/Fixo/Fundo.jpg");
+    background-image: url("Fundo.jpg");
     background-size: cover;
     background-attachment: fixed;
     color: white;

@@ -1,0 +1,884 @@
+/* ═══════════════════════════════════════════════════════
+   CLIENTES — clientes.css
+════════════════════════════════════════════════════════ */
+
+.cli-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+}
+
+/* ── RESUMO ── */
+.resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.resumo-card {
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.2s;
+}
+
+.resumo-card:hover {
+    transform: translateY(-2px);
+}
+
+.resumo-card.amarelo {
+    background: rgba(245, 196, 0, 0.1);
+    border-color: rgba(245, 196, 0, 0.3);
+}
+
+.resumo-card.azul {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.resumo-card.roxo {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.resumo-card.verde {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.resumo-icone {
+    font-size: 24px;
+    margin-bottom: 6px;
+}
+
+.resumo-valor {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: white;
+}
+
+.resumo-card.amarelo .resumo-valor {
+    color: #f5c400;
+}
+
+.resumo-card.azul .resumo-valor {
+    color: #60a5fa;
+}
+
+.resumo-card.roxo .resumo-valor {
+    color: #c084fc;
+}
+
+.resumo-card.verde .resumo-valor {
+    color: #4ade80;
+}
+
+.resumo-label {
+    font-size: 11px;
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ── ABAS ── */
+.abas-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.aba {
+    padding: 10px 22px;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.aba:hover {
+    border-color: #f5c400;
+    color: #f5c400;
+}
+
+.aba.ativa {
+    background: #e82d2d;
+    border-color: #e82d2d;
+    color: white;
+}
+
+.aba-conteudo {
+    display: none;
+    animation: descerSuave 0.3s ease;
+}
+
+.aba-conteudo.ativo {
+    display: block;
+}
+
+/* ── FILTROS ── */
+.filtros-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    padding: 8px 14px;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.filtro-btn:hover {
+    border-color: #f5c400;
+    color: #f5c400;
+}
+
+.filtro-btn.ativo {
+    background: #f5c400;
+    border-color: #f5c400;
+    color: black;
+}
+
+/* ── CARD DE SOLICITAÇÃO ── */
+.solic-card {
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    animation: descerSuave 0.3s ease;
+    transition: border-color 0.2s;
+}
+
+.solic-card:hover {
+    border-color: #2a2a2a;
+}
+
+/* Borda esquerda por status */
+.solic-card.aguardando {
+    border-left: 3px solid #f5c400;
+}
+
+.solic-card.agendado {
+    border-left: 3px solid #60a5fa;
+}
+
+.solic-card.em_andamento {
+    border-left: 3px solid #c084fc;
+}
+
+.solic-card.pronto {
+    border-left: 3px solid #4ade80;
+}
+
+.solic-card.concluido {
+    border-left: 3px solid #444;
+    opacity: 0.7;
+}
+
+.solic-topo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.solic-nome {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.solic-hora {
+    color: #444;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* Badge de status */
+.solic-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.badge-aguardando {
+    background: rgba(245, 196, 0, 0.15);
+    color: #f5c400;
+}
+
+.badge-agendado {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+.badge-em_andamento {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+}
+
+.badge-pronto {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+.badge-concluido {
+    background: rgba(100, 100, 100, 0.15);
+    color: #666;
+}
+
+/* Dados da solicitação */
+.solic-dados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.solic-dado {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 140px;
+}
+
+.solic-dado-label {
+    color: #444;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+}
+
+.solic-dado-valor {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Serviços extras */
+.servicos-extras {
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+}
+
+.servicos-extras-titulo {
+    color: #c084fc;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.servico-extra-tag {
+    display: inline-block;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    color: #c084fc;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin: 2px;
+}
+
+/* Agendamento confirmado */
+.agendamento-box {
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.agend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #60a5fa;
+}
+
+.agend-val {
+    font-weight: bold;
+    color: white;
+}
+
+/* Problema */
+.solic-problema {
+    background: rgba(245, 196, 0, 0.04);
+    border: 1px solid rgba(245, 196, 0, 0.1);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* Ações */
+.solic-acoes {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.btn-acao-solic {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid;
+    background: transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-agendar {
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #60a5fa;
+}
+
+.btn-agendar:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.btn-iniciar {
+    border-color: rgba(168, 85, 247, 0.4);
+    color: #c084fc;
+}
+
+.btn-iniciar:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.btn-pronto {
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #4ade80;
+}
+
+.btn-pronto:hover {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.btn-wpp {
+    border-color: rgba(37, 211, 102, 0.4);
+    color: #4ade80;
+}
+
+.btn-wpp:hover {
+    background: rgba(37, 211, 102, 0.1);
+}
+
+.btn-detalhes {
+    border-color: rgba(245, 196, 0, 0.3);
+    color: #f5c400;
+}
+
+.btn-detalhes:hover {
+    background: rgba(245, 196, 0, 0.08);
+}
+
+.btn-cancelar-solic {
+    border-color: rgba(232, 45, 45, 0.3);
+    color: #f87171;
+}
+
+.btn-cancelar-solic:hover {
+    background: rgba(232, 45, 45, 0.1);
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    z-index: 300;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.modal-overlay.aberto {
+    display: flex;
+}
+
+.modal-box {
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 22px 22px 0 0;
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: subirModal 0.3s ease;
+}
+
+@keyframes subirModal {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modal-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #1a1a1a;
+    position: sticky;
+    top: 0;
+    background: #0d0d0d;
+    z-index: 1;
+}
+
+.modal-topo h3 {
+    color: #f5c400;
+    font-size: 17px;
+}
+
+.btn-fechar-modal {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid #333;
+    color: #555;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.btn-fechar-modal:hover {
+    color: #f87171;
+    border-color: rgba(232, 45, 45, 0.3);
+}
+
+.modal-corpo {
+    padding: 20px;
+}
+
+.modal-secao-titulo {
+    font-size: 11px;
+    font-weight: bold;
+    color: #f5c400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 18px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-secao-titulo::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #2a2a2a, transparent);
+}
+
+.modal-secao-titulo:first-child {
+    margin-top: 0;
+}
+
+/* Grade de data/hora no modal */
+.data-hora-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* Serviços extras no modal */
+.servicos-check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.serv-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+    color: #666;
+}
+
+.serv-check:hover {
+    border-color: #444;
+    color: #aaa;
+}
+
+.serv-check.marcado {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.35);
+    color: #c084fc;
+}
+
+.serv-check input {
+    display: none;
+}
+
+/* Botões do modal */
+.modal-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-modal-principal {
+    flex: 1;
+    padding: 13px;
+    background: #e82d2d;
+    color: white;
+    border: none;
+    border-radius: 11px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-modal-principal:hover {
+    opacity: 0.85;
+}
+
+.btn-modal-sec {
+    padding: 13px 18px;
+    background: transparent;
+    border: 1px solid #333;
+    color: #555;
+    border-radius: 11px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-modal-sec:hover {
+    color: #aaa;
+    border-color: #555;
+}
+
+/* ── BUSCA CLIENTES ── */
+.barra-cli-topo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.busca-cli-wrap {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.busca-icone {
+    position: absolute;
+    left: 12px;
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.busca-cli-wrap input {
+    width: 100%;
+    padding: 11px 14px 11px 36px;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.busca-cli-wrap input:focus {
+    border-color: #f5c400;
+}
+
+.btn-add-cli {
+    padding: 11px 16px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.btn-add-cli:hover {
+    background: rgba(34, 197, 94, 0.25);
+}
+
+/* ── CARD CLIENTE ── */
+.cliente-card {
+    background: rgba(18, 18, 18, 0.96);
+    border: 1px solid #222;
+    border-radius: 13px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    animation: descerSuave 0.3s ease;
+}
+
+.cliente-card:hover {
+    border-color: #333;
+    transform: translateX(3px);
+}
+
+.cli-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e82d2d, #f5c400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+
+.cli-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.cli-nome {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.cli-meta {
+    color: #555;
+    font-size: 12px;
+}
+
+.cli-tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.cli-tag {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.tag-vip {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+}
+
+.tag-frequente {
+    background: rgba(245, 196, 0, 0.15);
+    color: #f5c400;
+}
+
+.tag-novo {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+.tag-pendente {
+    background: rgba(232, 45, 45, 0.15);
+    color: #f87171;
+}
+
+.cli-dir {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.cli-total {
+    color: #4ade80;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.cli-total-label {
+    color: #333;
+    font-size: 11px;
+}
+
+.cli-serv-count {
+    color: #555;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ── HISTÓRICO DO CLIENTE NO MODAL ── */
+.hist-mini {
+    background: rgba(18, 18, 18, 0.95);
+    border: 1px solid #1a1a1a;
+    border-left: 3px solid #e82d2d;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+}
+
+.hist-mini-topo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.hist-mini-serv {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hist-mini-data {
+    color: #444;
+    font-size: 12px;
+}
+
+.hist-mini-meta {
+    color: #555;
+    font-size: 12px;
+}
+
+.hist-mini-val {
+    color: #4ade80;
+    font-weight: 900;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ── TOAST ── */
+.toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(18, 18, 18, 0.98);
+    border: 1px solid #333;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 999;
+    white-space: nowrap;
+}
+
+.toast.visivel {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.verde {
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #4ade80;
+}
+
+.toast.azul {
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #60a5fa;
+}
+
+.toast.vermelho {
+    border-color: rgba(232, 45, 45, 0.4);
+    color: #f87171;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+    text-align: center;
+    padding: 44px 20px;
+    color: #333;
+    font-size: 15px;
+}
+
+.empty-state span {
+    display: block;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+    .resumo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .data-hora-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .servicos-check-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cli-total {
+        display: none;
+    }
+
+    .modal-acoes {
+        flex-direction: column;
+    }
+}

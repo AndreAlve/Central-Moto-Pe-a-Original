@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Produtos — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gerenciar-produtos.css">
+</head>
+
+<body>
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>📦 Gerenciar Produtos</h2>
+        <p>Adicione, edite e remova produtos do seu catálogo</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- TOAST -->
+        <div class="toast" id="toast"></div>
+
+        <!-- MODAL ADICIONAR / EDITAR -->
+        <div class="modal-overlay" id="modalProduto">
+            <div class="modal-box" id="modalProdutoBox"></div>
+        </div>
+
+        <!-- MODAL CONFIRMAR EXCLUSÃO -->
+        <div class="modal-overlay" id="modalConfirmar">
+            <div class="modal-box" id="modalConfirmarBox"></div>
+        </div>
+
+        <div class="prod-wrap">
+
+            <!-- BARRA TOPO -->
+            <div class="barra-topo">
+                <div class="barra-esq">
+                    <div class="pag-titulo">Produtos</div>
+                    <div class="total-badge" id="totalBadge">0 produtos</div>
+                </div>
+                <button class="btn-add-prod" onclick="abrirModalAdd()">
+                    ＋ Novo Produto
+                </button>
+            </div>
+
+            <!-- CARDS ESTOQUE -->
+            <div class="estoque-grid">
+                <div class="est-card ok">
+                    <div class="est-num" id="qtdOk">0</div>
+                    <div class="est-label">✅ Em estoque</div>
+                </div>
+                <div class="est-card baixo">
+                    <div class="est-num" id="qtdBaixo">0</div>
+                    <div class="est-label">⚠️ Estoque baixo</div>
+                </div>
+                <div class="est-card zerado">
+                    <div class="est-num" id="qtdZerado">0</div>
+                    <div class="est-label">❌ Sem estoque</div>
+                </div>
+            </div>
+
+            <!-- BUSCA E FILTRO -->
+            <div class="busca-filtro-row">
+                <div class="busca-prod-wrap">
+                    <span class="busca-icone">🔍</span>
+                    <input id="inputBuscaProd" type="text" placeholder="Buscar produto..." oninput="renderProdutos()">
+                </div>
+                <select class="filtro-marca-sel" id="filtroMarca" onchange="renderProdutos()">
+                    <option value="">Todas as marcas</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Yamaha">Yamaha</option>
+                    <option value="Suzuki">Suzuki</option>
+                    <option value="Kawasaki">Kawasaki</option>
+                    <option value="Universal">Universal</option>
+                    <option value="Outra">Outra</option>
+                </select>
+            </div>
+
+            <!-- LISTA DE PRODUTOS -->
+            <div id="listaProdutos"></div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="gerenciar-produtos.js"></script>
+
+</body>
+
+</html>

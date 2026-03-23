@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="clientes.css">
+</head>
+
+<body>
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>👥 Clientes</h2>
+        <p>Veja e gerencie os clientes que já passaram pela nossa oficina!</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- ══ MODAL SOLICITAÇÃO ══ -->
+        <div class="modal-overlay" id="modalSolic">
+            <div class="modal-box" id="modalSolicBox"></div>
+        </div>
+
+        <!-- ══ MODAL CLIENTE ══ -->
+        <div class="modal-overlay" id="modalCliente">
+            <div class="modal-box" id="modalClienteBox"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toast"></div>
+
+        <div class="cli-wrap">
+
+            <!-- CARDS RESUMO -->
+            <div class="resumo-grid">
+                <div class="resumo-card amarelo">
+                    <div class="resumo-icone">⏳</div>
+                    <div class="resumo-valor" id="cardAguardando">0</div>
+                    <div class="resumo-label">Aguardando</div>
+                </div>
+                <div class="resumo-card azul">
+                    <div class="resumo-icone">📅</div>
+                    <div class="resumo-valor" id="cardAgendado">0</div>
+                    <div class="resumo-label">Agendados</div>
+                </div>
+                <div class="resumo-card roxo">
+                    <div class="resumo-icone">🔧</div>
+                    <div class="resumo-valor" id="cardAndamento">0</div>
+                    <div class="resumo-label">Em andamento</div>
+                </div>
+                <div class="resumo-card verde">
+                    <div class="resumo-icone">✅</div>
+                    <div class="resumo-valor" id="cardPronto">0</div>
+                    <div class="resumo-label">Prontos</div>
+                </div>
+            </div>
+
+            <!-- ABAS -->
+            <div class="abas-row">
+                <button class="aba ativa" onclick="trocarAba('solicitacoes', this)">
+                    📋 Solicitações
+                </button>
+                <button class="aba" onclick="trocarAba('clientes', this)">
+                    👥 Clientes
+                </button>
+            </div>
+
+            <!-- ══ ABA SOLICITAÇÕES ══ -->
+            <div class="aba-conteudo ativo" id="aba-solicitacoes">
+                <div class="filtros-row">
+                    <button class="filtro-btn ativo" onclick="setFiltroSolic('todos', this)">📋 Todos</button>
+                    <button class="filtro-btn" onclick="setFiltroSolic('aguardando', this)">⏳ Aguardando</button>
+                    <button class="filtro-btn" onclick="setFiltroSolic('agendado', this)">📅 Agendados</button>
+                    <button class="filtro-btn" onclick="setFiltroSolic('em_andamento', this)">🔧 Em andamento</button>
+                    <button class="filtro-btn" onclick="setFiltroSolic('pronto', this)">✅ Prontos</button>
+                    <button class="filtro-btn" onclick="setFiltroSolic('concluido', this)">🏁 Concluídos</button>
+                </div>
+                <div id="listaSolicitacoes"></div>
+            </div>
+
+            <!-- ══ ABA CLIENTES ══ -->
+            <div class="aba-conteudo" id="aba-clientes">
+                <div class="barra-cli-topo">
+                    <div class="busca-cli-wrap">
+                        <span class="busca-icone">🔍</span>
+                        <input id="inputBuscaCli" type="text" placeholder="Buscar por nome, telefone ou placa..."
+                            oninput="renderClientes()">
+                    </div>
+                    <button class="btn-add-cli" onclick="abrirModalAddCliente()">
+                        ＋ Adicionar
+                    </button>
+                </div>
+                <div id="listaClientes"></div>
+            </div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="clientes.js"></script>
+
+</body>
+
+</html>

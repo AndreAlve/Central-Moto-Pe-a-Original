@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Peças — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+
+<body>
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="index.html">Voltar</a>
+        <h2>🛒 Catálogo</h2>
+        <p>Veja as peças disponíveis em nosso estoque!</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- BUSCA -->
+        <div class="busca-wrap">
+            <input id="inputBusca" type="text" placeholder="Buscar peça ou marca..." oninput="buscarPeca()">
+            <select id="filtroCatalogo" onchange="buscarPeca()">
+                <option value="">Todas as marcas</option>
+                <option value="Honda">Honda</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Kawasaki">Kawasaki</option>
+                <option value="Universal">Universal</option>
+                <option value="Outra">Outra</option>
+            </select>
+            <button onclick="buscarPeca()">🔍 Buscar</button>
+        </div>
+
+        <!-- GRID DE PEÇAS -->
+        <div class="pecas-grid" id="containerPecas"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="catalogo.js"></script>
+
+</body>
+
+</html>

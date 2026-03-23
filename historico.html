@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviço — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="historico.css">
+</head>
+
+<body>
+
+    <!-- TELA DE BUSCA -->
+    <div id="telaBusca">
+        <div class="hist-cabecalho">
+            <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+            <a class="hbtn-amarelo" href="index.html">Voltar</a>
+            <h2>📋 Histórico da Moto</h2>
+            <p>Digite o Nome ou seu telefone para ver tudo que foi feito na sua moto!</p>
+        </div>
+
+        <div class="hist-wrap">
+            <div class="busca-card">
+
+                <div class="busca-icones">🏍️</div>
+                <div class="busca-titulo">Consultar histórico</div>
+                <div class="busca-sub">Os dados são privados e só aparecem para quem tem a placa ou telefone</div>
+
+                <div class="busca-tabs">
+                    <button class="busca-tab ativa" onclick="setTipoBusca('nome', this)">
+                        🔖 Pelo Seu Nome
+                    </button>
+                    <button class="busca-tab" onclick="setTipoBusca('telefone', this)">
+                        📞 Pelo Seu Telefone
+                    </button>
+                </div>
+
+                <div id="campoBuscaNome">
+                    <label>Seu Nome</label>
+                    <input id="inputPlaca" type="text" placeholder="Ex: João da Silva"
+                        oninput="this.value = this.value.toUpperCase()" maxlength="100">
+                </div>
+
+                <div id="campoBuscaTelefone" style="display:none">
+                    <label>Seu WhatsApp</label>
+                    <input id="inputTelefone" type="tel" placeholder="Ex: (94) 99999-0000">
+                </div>
+
+                <button class="btn-buscar" onclick="buscarHistorico()">
+                    🔍 Ver Histórico
+                </button>
+
+                <div class="busca-erro" id="buscaErro" style="display:none">
+                    😕 Nenhum histórico encontrado. Verifique o nome ou telefone.
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE RESULTADO -->
+    <div id="telaResultado" style="display:none">
+
+        <div class="hist-cabecalho" style="padding-bottom:10px">
+            <a class="hbtn-vermelho" href="#" onclick="voltarBusca()">Nova busca</a>
+            <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+            <h2>📋 Histórico da Moto</h2>
+        </div>
+
+        <div class="hist-wrap">
+
+            <!-- CARD DA MOTO -->
+            <div class="moto-card" id="motoCard"></div>
+
+            <!-- LINHA DO TEMPO -->
+            <div class="timeline-titulo">🕐 Linha do tempo</div>
+            <div id="timelineServicos"></div>
+
+            <!-- BOTÃO SOLICITAR NOVO SERVIÇO -->
+            <a class="hbtn-amarelo" href="servicos.html">
+                🔧 Solicitar novo serviço
+            </a>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="historico-moto.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Serviço — Central Moto Peças</title>
+    <link rel="icon" href="/image/Fixo/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registrar-servico.css">
+</head>
+
+<body>
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>🔧 Registrar Serviço</h2>
+        <p>Registre novos serviços realizados</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- MODAL CATÁLOGO -->
+        <div class="modal-overlay" id="modalCatalogo">
+            <div class="modal-catalogo">
+                <div class="modal-topo">
+                    <h3>📦 Escolher Peças</h3>
+                    <button type="button" class="btn-fechar-modal" onclick="fecharCatalogo()">✕</button>
+                </div>
+                <div class="modal-busca">
+                    <input type="text" id="buscaModalPeca" placeholder="🔍 Buscar peça..." oninput="renderCatalogo()">
+                </div>
+                <div class="modal-lista" id="modalListaPecas"></div>
+            </div>
+        </div>
+
+        <div class="reg-wrap">
+
+            <!-- SEÇÃO 1: CLIENTE -->
+            <div class="secao">
+                <div class="secao-titulo">👤 Cliente</div>
+                <div class="busca-cliente-wrap">
+                    <input id="buscaClienteInput" type="text" placeholder="Buscar pelo nome, telefone ou placa..."
+                        oninput="buscarCliente()">
+                    <button class="btn-buscar-cli" onclick="buscarCliente()">🔍 Buscar</button>
+                </div>
+                <div class="resultado-busca" id="resultadoBusca"></div>
+                <div class="badge-autofill" id="badgeAutofill">
+                    ✅ Dados preenchidos automaticamente!
+                    <button class="btn-limpar-cli" onclick="limparCliente()">✕ Limpar</button>
+                </div>
+                <div class="campos-grid">
+                    <div>
+                        <label>Nome do cliente *</label>
+                        <input id="inputNome" type="text" placeholder="Ex: Carlos Silva">
+                    </div>
+                    <div>
+                        <label>Telefone *</label>
+                        <input id="inputTelefone" type="tel" placeholder="Ex: (94) 99999-0000">
+                    </div>
+                    <div>
+                        <label>Marca da moto *</label>
+                        <select id="inputMarca" title="Marca da moto">
+                            <option value="">Selecione...</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Yamaha">Yamaha</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="Kawasaki">Kawasaki</option>
+                            <option value="Dafra">Dafra</option>
+                            <option value="Shineray">Shineray</option>
+                            <option value="Haojue">Haojue</option>
+                            <option value="Outra">Outra</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Modelo *</label>
+                        <input id="inputModelo" type="text" placeholder="Ex: CG 160">
+                    </div>
+                    <div>
+                        <label>Placa *</label>
+                        <input id="inputPlaca" type="text" placeholder="Ex: ABC-1D23">
+                    </div>
+                    <div>
+                        <label>KM atual</label>
+                        <input id="inputKm" type="number" placeholder="Ex: 15400">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 2: SERVIÇO -->
+            <div class="secao">
+                <div class="secao-titulo">🔧 Serviço</div>
+                <div class="campos-grid">
+                    <div>
+                        <label>Serviço realizado *</label>
+                        <select id="inputServico" title="Serviço realizado">
+                            <option value="">Selecione...</option>
+                            <option value="Troca de óleo">🛢️ Troca de óleo</option>
+                            <option value="Revisão completa">🔧 Revisão completa</option>
+                            <option value="Troca de pneus">🛞 Troca de pneus</option>
+                            <option value="Troca de corrente">⛓️ Troca de corrente</option>
+                            <option value="Regulagem de freios">🛑 Regulagem de freios</option>
+                            <option value="Troca de pastilhas">🔩 Troca de pastilhas</option>
+                            <option value="Troca de vela">⚡ Troca de vela</option>
+                            <option value="Diagnóstico geral">🔍 Diagnóstico geral</option>
+                            <option value="Outro serviço">🏍️ Outro serviço</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>👨‍🔧 Quem realizou *</label>
+                        <select id="inputFuncionario" title="Quem realizou">
+                            <option value="">Selecione...</option>
+                        </select>
+                    </div>
+                    <div class="campo-full">
+                        <label>O que foi feito (descrição)</label>
+                        <textarea id="inputObs"
+                            placeholder="Descreva o serviço, diagnóstico, observações..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 3: PEÇAS -->
+            <div class="secao">
+                <div class="secao-titulo">📦 Peças Utilizadas</div>
+                <div class="pecas-selecionadas" id="pecasSelecionadas">
+                    <span class="pecas-vazio">Nenhuma peça selecionada</span>
+                </div>
+                <button class="btn-abrir-catalogo" onclick="abrirCatalogo()">
+                    ＋ Escolher peças do catálogo
+                </button>
+                <div class="pecas-extra">
+                    <label>Peças que não estão no catálogo</label>
+                    <input id="inputPecasExtra" type="text" placeholder="Ex: parafuso, borracha, abraçadeira...">
+                </div>
+            </div>
+
+            <!-- SEÇÃO 4: VALORES -->
+            <div class="secao">
+                <div class="secao-titulo">💰 Valores e Pagamento</div>
+                <div class="campos-grid">
+                    <div>
+                        <label>Valor cobrado (R$) *</label>
+                        <input id="inputValor" type="number" step="0.01" placeholder="0.00">
+                    </div>
+                    <div>
+                        <label>Data do serviço *</label>
+                        <input id="inputData" type="date" title="Data do serviço">
+                    </div>
+                    <div class="campo-full">
+                        <label>Forma de pagamento</label>
+                        <select id="inputPagamento" onchange="mostrarPix()">
+                            <option value="">Selecione...</option>
+                            <option value="Dinheiro">💵 Dinheiro</option>
+                            <option value="Cartão de Débito">💳 Cartão de Débito</option>
+                            <option value="Cartão de Crédito">💳 Cartão de Crédito</option>
+                            <option value="Pix">📲 Pix</option>
+                            <option value="Pendente">⏳ Pendente (a pagar)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="caixaPix" class="caixa-pix" style="display:none;margin-top:10px">
+                    <p class="pix-titulo">📲 Chave Pix da Central Moto Peças</p>
+                    <div class="pix-chave" onclick="copiarPix()">(94) 9 9571-8970</div>
+                    <p class="pix-dica">👆 Toque para copiar</p>
+                    <div id="pixCopiado" class="pix-copiado" style="display:none">✅ Copiado!</div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 5: FOTO -->
+            <div class="secao">
+                <div class="secao-titulo">📸 Foto do Serviço</div>
+                <div class="foto-area" id="fotoArea" onclick="document.getElementById('inputFoto').click()">
+                    <input id="inputFoto" type="file" accept="image/*" onchange="previewFoto(this)"
+                        style="display:none">
+                    <div class="foto-placeholder" id="fotoPlaceholder">
+                        <span>📷</span>
+                        Toque para tirar ou escolher uma foto
+                    </div>
+                    <img id="fotoPreviewImg" class="foto-preview-img">
+                    <button class="btn-remover-img" id="btnRemoverImg" onclick="removerFoto(event)">✕ Remover</button>
+                </div>
+            </div>
+
+            <!-- BOTÃO REGISTRAR -->
+            <button class="btn-registrar" onclick="registrarServico()">
+                💾 Registrar Serviço
+            </button>
+
+            <!-- RESULTADO -->
+            <div class="resultado-box" id="resultadoBox">
+                <div class="res-check">🎉</div>
+                <div class="res-titulo">Serviço registrado com sucesso!</div>
+                <div id="resConteudo"></div>
+                <div class="res-acoes">
+                    <a id="btnWppRes" href="#" target="_blank" class="btn-wpp-res">📲 WhatsApp</a>
+                    <button class="btn-imprimir-res" onclick="imprimirComprovante()">🖨️ Imprimir</button>
+                </div>
+                <button class="btn-novo-reg" onclick="novoRegistro()">
+                    ＋ Registrar outro serviço
+                </button>
+            </div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="registrar-servico.js"></script>
+
+
+</html>

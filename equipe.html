@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="equipe.css">
+</head>
+
+<body>
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>👨‍🔧 Equipe</h2>
+        <p>Gerencie os aspectos relacionados à sua equipe</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- MODAL ADICIONAR / EDITAR FUNCIONÁRIO -->
+        <div class="modal-overlay" id="modalFunc">
+            <div class="modal-box" id="modalFuncBox"></div>
+        </div>
+
+        <!-- MODAL DETALHES DO FUNCIONÁRIO -->
+        <div class="modal-overlay" id="modalDetalhe">
+            <div class="modal-box" id="modalDetalheBox"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toast"></div>
+
+        <div class="equipe-wrap">
+
+            <!-- CARDS RESUMO -->
+            <div class="resumo-grid">
+                <div class="resumo-card azul">
+                    <div class="resumo-icone">👷</div>
+                    <div class="resumo-valor" id="totalFuncionarios">0</div>
+                    <div class="resumo-label">Funcionários</div>
+                </div>
+                <div class="resumo-card verde">
+                    <div class="resumo-icone">🔧</div>
+                    <div class="resumo-valor" id="totalServicos">0</div>
+                    <div class="resumo-label">Serviços feitos</div>
+                </div>
+                <div class="resumo-card amarelo">
+                    <div class="resumo-icone">🏆</div>
+                    <div class="resumo-valor" id="topFuncionario">—</div>
+                    <div class="resumo-label">Top do mês</div>
+                </div>
+            </div>
+
+            <!-- BARRA TOPO -->
+            <div class="barra-topo">
+                <div class="sec-titulo">👷 Funcionários</div>
+                <button class="btn-add-func" onclick="abrirModalAdd()">
+                    ＋ Adicionar
+                </button>
+            </div>
+
+            <!-- LISTA DE FUNCIONÁRIOS -->
+            <div id="listaFuncionarios"></div>
+
+            <!-- RANKING -->
+            <div class="sec-titulo" style="margin:28px 0 14px">🏆 Ranking de serviços</div>
+            <div id="rankingFuncionarios"></div>
+
+            <!-- HISTÓRICO POR FUNCIONÁRIO -->
+            <div class="sec-titulo" style="margin:28px 0 14px">📋 Serviços por funcionário</div>
+            <div class="filtro-func-row" id="filtroFuncRow"></div>
+            <div id="listaServicosFuncionario"></div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="equipe.js"></script>
+
+</body>
+
+</html>

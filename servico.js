@@ -172,7 +172,7 @@ function enviarSolicitacao() {
     <p>🏍️ <strong>${marca} ${modelo}</strong></p>
     <p>🔧 <strong>${servico}</strong></p>
     ${problema ? `<p>📝 ${problema}</p>` : ""}
-`
+  `
 
     irPasso(3)
 }

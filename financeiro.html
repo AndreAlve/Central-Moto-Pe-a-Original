@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração — Central Moto Peças</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="financeiro.css">
+</head>
+
+<body>
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>💰 Financeiro</h2>
+        <p>Gerencie os aspectos financeiros do seu negócio</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- MODAL LANÇAR SAÍDA -->
+        <div class="modal-overlay" id="modalSaida">
+            <div class="modal-box" id="modalSaidaBox"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toast"></div>
+
+        <div class="fin-wrap">
+
+            <!-- FILTROS DE PERÍODO -->
+            <div class="periodo-row">
+                <button class="periodo-btn ativo" onclick="setPeriodo('hoje', this)">📅 Hoje</button>
+                <button class="periodo-btn" onclick="setPeriodo('semana', this)">📆 Semana</button>
+                <button class="periodo-btn" onclick="setPeriodo('mes', this)">🗓️ Mês</button>
+                <button class="periodo-btn" onclick="setPeriodo('tudo', this)">📊 Tudo</button>
+            </div>
+
+            <!-- CARDS RESUMO -->
+            <div class="resumo-fin-grid">
+                <div class="fin-card entradas">
+                    <div class="fin-card-icone">⬆️</div>
+                    <div class="fin-card-val" id="totalEntradas">R$ 0,00</div>
+                    <div class="fin-card-label">Entradas</div>
+                </div>
+                <div class="fin-card saidas">
+                    <div class="fin-card-icone">⬇️</div>
+                    <div class="fin-card-val" id="totalSaidas">R$ 0,00</div>
+                    <div class="fin-card-label">Saídas</div>
+                </div>
+                <div class="fin-card lucro">
+                    <div class="fin-card-icone">💰</div>
+                    <div class="fin-card-val" id="totalLucro">R$ 0,00</div>
+                    <div class="fin-card-label">Lucro</div>
+                </div>
+            </div>
+
+            <!-- BREAKDOWN POR FORMA DE PAGAMENTO -->
+            <div class="pagamentos-grid" id="pagamentosGrid"></div>
+
+            <!-- ABAS -->
+            <div class="abas-row">
+                <button class="aba ativa" onclick="trocarAba('lancamentos', this)">
+                    📋 Lançamentos
+                </button>
+                <button class="aba" onclick="trocarAba('entradas', this)">
+                    ⬆️ Entradas
+                </button>
+                <button class="aba" onclick="trocarAba('saidas', this)">
+                    ⬇️ Saídas
+                </button>
+            </div>
+
+            <!-- ABA: LANÇAMENTOS (todos) -->
+            <div class="aba-conteudo ativo" id="aba-lancamentos">
+                <div class="sec-header">
+                    <div class="sec-titulo">📋 Todos os lançamentos</div>
+                    <button class="btn-add-saida" onclick="abrirModalSaida()">
+                        ➕ Lançar saída
+                    </button>
+                </div>
+                <div id="listaLancamentos"></div>
+            </div>
+
+            <!-- ABA: ENTRADAS -->
+            <div class="aba-conteudo" id="aba-entradas">
+                <div class="sec-header">
+                    <div class="sec-titulo">⬆️ Entradas de serviços</div>
+                </div>
+                <div id="listaEntradas"></div>
+            </div>
+
+            <!-- ABA: SAÍDAS -->
+            <div class="aba-conteudo" id="aba-saidas">
+                <div class="sec-header">
+                    <div class="sec-titulo">⬇️ Saídas / Despesas</div>
+                    <button class="btn-add-saida" onclick="abrirModalSaida()">
+                        ➕ Nova saída
+                    </button>
+                </div>
+                <div id="listaSaidas"></div>
+            </div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="financeiro.js"></script>
+
+</body>
+
+</html>

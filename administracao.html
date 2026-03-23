@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="administracao.css">
+</head>
+
+<body>
+    <!--Menu-->
+    <nav class="menu">
+        <div class="menu_logo">
+            <img src="Logo.png" alt="Central Moto Peças">
+        </div>
+        <div class="menu_links">
+            <a href="index.html">Início</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="historico.html">Historico</a>
+        </div>
+        <div class="menu-hamburger" onclick="abrirMenu()"></div>
+    </nav>
+
+    <!--menu para celular-->
+    <div id="menu-celular" class="menu-celular">
+        <a href="#index" onclick="fecharMenu()">Início</a>
+        <a href="#catalogo" onclick="fecharMenu()">Catálogo</a>
+        <a href="#servicos" onclick="fecharMenu()">Serviços</a>
+        <a href="#contato" onclick="fecharMenu()">Contato</a>
+        <a href="#administracao" onclick="fecharMenu()">Administração</a>
+    </div>
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <h2>⚙️ Administração</h2>
+        <p>Gerencie os aspectos administrativos do seu negócio</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- CARDS RESUMO -->
+        <div class="resumo-grid">
+            <div class="resumo-card amarelo">
+                <div class="resumo-icone">📋</div>
+                <div class="resumo-valor" id="totalSolicitacoes">0</div>
+                <div class="resumo-label">Solicitações</div>
+            </div>
+            <div class="resumo-card azul">
+                <div class="resumo-icone">👥</div>
+                <div class="resumo-valor" id="totalClientes">0</div>
+                <div class="resumo-label">Clientes</div>
+            </div>
+            <div class="resumo-card vermelho">
+                <div class="resumo-icone">🔧</div>
+                <div class="resumo-valor" id="totalServicos">0</div>
+                <div class="resumo-label">Serviços feitos</div>
+            </div>
+            <div class="resumo-card verde">
+                <div class="resumo-icone">💰</div>
+                <div class="resumo-valor" id="totalHoje">R$0</div>
+                <div class="resumo-label">Entradas hoje</div>
+            </div>
+        </div>
+
+        <!-- ATALHOS RÁPIDOS -->
+        <div class="atalhos-titulo">🚀 Acesso Rápido</div>
+        <div class="atalhos-grid">
+
+            <a class="atalho-card" href="registrar-servico.html">
+                <div class="atalho-icone" style="background:rgba(232,45,45,0.15);border-color:rgba(232,45,45,0.3)">🔧
+                </div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Registrar Serviço</div>
+                    <div class="atalho-desc">Registrar um serviço realizado</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+            <a class="atalho-card" href="clientes.html">
+                <div class="atalho-icone" style="background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3)">👥
+                </div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Clientes</div>
+                    <div class="atalho-desc">Ver e avisar clientes</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+            <a class="atalho-card" href="gerenciar-produtos.html">
+                <div class="atalho-icone" style="background:rgba(245,196,0,0.15);border-color:rgba(245,196,0,0.3)">📦
+                </div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Produtos</div>
+                    <div class="atalho-desc">Gerenciar peças e estoque</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+            <a class="atalho-card" href="financeiro.html">
+                <div class="atalho-icone" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3)">💰
+                </div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Financeiro</div>
+                    <div class="atalho-desc">Entradas, saídas e lucro</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+            <a class="atalho-card" href="equipe.html">
+                <div class="atalho-icone" style="background:rgba(168,85,247,0.15);border-color:rgba(168,85,247,0.3)">
+                    👨‍🔧</div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Equipe</div>
+                    <div class="atalho-desc">Funcionários e ranking</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+            <a class="atalho-card" href="gerenciar-historico.html">
+                <div class="atalho-icone" style="background:rgba(255,107,0,0.15);border-color:rgba(255,107,0,0.3)">📜
+                </div>
+                <div class="atalho-info">
+                    <div class="atalho-nome">Histórico</div>
+                    <div class="atalho-desc">Buscar serviços por placa</div>
+                </div>
+                <div class="atalho-seta">→</div>
+            </a>
+
+        </div>
+
+        <!-- SOLICITAÇÕES PENDENTES -->
+        <div class="sec-header">
+            <div class="sec-titulo">⏳ Solicitações Pendentes</div>
+        </div>
+        <div id="listaSolicitacoes"></div>
+
+        <!-- ÚLTIMOS SERVIÇOS -->
+        <div class="sec-header" style="margin-top:28px">
+            <div class="sec-titulo">✅ Últimos Serviços</div>
+            <a class="hbtn-amarelo" href="historico.html">Ver todos</a>
+        </div>
+        <div id="listaServicos"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>verificarLogin()</script>
+    <script src="administracao.js"></script>
+</body>
+
+</html>

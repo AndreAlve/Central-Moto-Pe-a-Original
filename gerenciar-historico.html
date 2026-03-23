@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico — Central Moto Peças</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gerenciar-historico.css">
+</head>
+
+<body>
+
+    <div class="hist-cabecalho">
+        <img class="logo-principal" src="Logo.png" alt="Central Moto Peças">
+        <a class="hbtn-amarelo" href="administracao.html">Voltar</a>
+        <h2>📜 Histórico de Serviços</h2>
+        <p>Gerencie os aspectos do histórico de serviços</p>
+    </div>
+    <div class="admin-wrap">
+
+        <!-- MODAL DETALHE DO SERVIÇO -->
+        <div class="modal-overlay" id="modalServico">
+            <div class="modal-box" id="modalServicoBox"></div>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toast"></div>
+
+        <div class="hist-wrap">
+
+            <!-- CARDS RESUMO -->
+            <div class="resumo-grid">
+                <div class="resumo-card vermelho">
+                    <div class="resumo-icone">🔧</div>
+                    <div class="resumo-valor" id="cardTotal">0</div>
+                    <div class="resumo-label">Total serviços</div>
+                </div>
+                <div class="resumo-card verde">
+                    <div class="resumo-icone">💰</div>
+                    <div class="resumo-valor" id="cardFaturado">R$0</div>
+                    <div class="resumo-label">Total faturado</div>
+                </div>
+                <div class="resumo-card azul">
+                    <div class="resumo-icone">👥</div>
+                    <div class="resumo-valor" id="cardClientes">0</div>
+                    <div class="resumo-label">Clientes únicos</div>
+                </div>
+                <div class="resumo-card amarelo">
+                    <div class="resumo-icone">📅</div>
+                    <div class="resumo-valor" id="cardHoje">0</div>
+                    <div class="resumo-label">Hoje</div>
+                </div>
+            </div>
+
+            <!-- BUSCA E FILTROS -->
+            <div class="busca-filtros">
+                <div class="busca-hist-wrap">
+                    <span class="busca-icone">🔍</span>
+                    <input id="inputBusca" type="text" placeholder="Buscar por cliente, moto, placa ou serviço..."
+                        oninput="renderHistorico()">
+                </div>
+                <div class="filtros-row">
+                    <select id="filtroServico" onchange="renderHistorico()" class="filtro-sel">
+                        <option value="">Todos os serviços</option>
+                        <option value="Troca de óleo">Troca de óleo</option>
+                        <option value="Revisão completa">Revisão completa</option>
+                        <option value="Troca de pneus">Troca de pneus</option>
+                        <option value="Troca de corrente">Troca de corrente</option>
+                        <option value="Regulagem de freios">Regulagem de freios</option>
+                        <option value="Troca de pastilhas">Troca de pastilhas</option>
+                        <option value="Troca de vela">Troca de vela</option>
+                        <option value="Diagnóstico geral">Diagnóstico geral</option>
+                    </select>
+                    <select id="filtroPeriodo" onchange="renderHistorico()" class="filtro-sel">
+                        <option value="tudo">Todo período</option>
+                        <option value="hoje">Hoje</option>
+                        <option value="semana">Esta semana</option>
+                        <option value="mes">Este mês</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- CONTAGEM DOS RESULTADOS -->
+            <div class="resultado-count" id="resultadoCount"></div>
+
+            <!-- LISTA -->
+            <div id="listaHistorico"></div>
+
+        </div>
+
+        <script src="script.js"></script>
+        <script>verificarLogin()</script>
+        <script src="gerenciar-historico.js"></script>
+
+</body>
+
+</html>
